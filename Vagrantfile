@@ -14,6 +14,7 @@ VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
+    config.vm.provision "file", source: "./keys", destination: "/tmp"
 
     (1..MASTERS_NUM).each do |i|      
         config.vm.define "k8s-m-#{i}" do |master|

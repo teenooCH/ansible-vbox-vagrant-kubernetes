@@ -20,8 +20,10 @@
 
 - name: Add new repositories keys
   apt_key:
-    url='{{item.key}}'
-  with_items: "{{ linux_add_packages_keys | default([])}}"
+    file: '{{item.file}}'
+#    url='{{item.key}}'
+  with_items: "{{ linux_add_packages_key_files | default([])}}"
+#  with_items: "{{ linux_add_packages_keys | default([])}}"
   when: linux_add_packages_keys is defined and not (linux_add_packages_keys is none or linux_add_packages_keys | trim == '')
   register: aptnewkeys
 
